@@ -21,10 +21,7 @@ runs:
           vendor
           .env
     - name: Fail
-      if: ${{inputs.require-hit == 'true' && steps.cache.ouputs.cache-hit != 'true'}}
+      if: ${{inputs.require-hit == 'true' && steps.cache.outputs.cache-hit != 'true'}}
       shell: bash
       run: |
-        echo ${{steps.cache.outputs.cache-hit}}
-        echo ${{steps.cache.outputs.cache-hit != 'true'}}
-        echo ${{inputs.require-hit == 'true' && steps.cache.ouputs.cache-hit != 'true'}}
         false
