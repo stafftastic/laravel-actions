@@ -1,0 +1,14 @@
+name: Analyze Code with PHP Insights
+description: Perform static analysis with PHP Insights
+runs:
+  using: composite
+  steps:
+    - name: Cache Dependencies
+      id: cache
+      uses: stafftastic/laravel-actions/cache@main
+      with:
+        require-hit: true
+    - name: Run Static Analysis
+      shell: bash
+      run: |
+        php artisan insights --no-interaction
