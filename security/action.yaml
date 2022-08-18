@@ -1,0 +1,14 @@
+name: Analyze Dependency Security
+description: Perform security analysis with Enlightn Security Checker
+runs:
+  using: composite
+  steps:
+    - name: Cache Dependencies
+      id: cache
+      uses: stafftastic/laravel-actions/cache@main
+      with:
+        require-hit: true
+    - name: Run Security Analysis
+      shell: bash
+      run: |
+        ./vendor/bin/security-checker security:check composer.lock --no-dev
