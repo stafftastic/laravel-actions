@@ -6,6 +6,8 @@ runs:
     - name: Cache Dependencies
       id: cache
       uses: stafftastic/laravel-actions/cache@main
+      with:
+        require-hit: true
     - name: Run Static Analysis
       shell: bash
       run: |
