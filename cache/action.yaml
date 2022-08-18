@@ -20,8 +20,8 @@ runs:
         path: |
           vendor
           .env
-  - name: Fail
-    if: ${{inputs.require-hit && steps.cache.ouputs.cache-hit != 'true'}}
-    shell: bash
-    run: |
-      false
+    - name: Fail
+      if: ${{inputs.require-hit && steps.cache.ouputs.cache-hit != 'true'}}
+      shell: bash
+      run: |
+        false
