@@ -24,7 +24,7 @@ runs:
       if: ${{inputs.require-hit == 'true' && steps.cache.ouputs.cache-hit != 'true'}}
       shell: bash
       run: |
-        echo ${{inputs.require-hit == 'true'}}
+        echo ${{steps.cache.outputs.cache-hit}}
         echo ${{steps.cache.outputs.cache-hit != 'true'}}
         echo ${{inputs.require-hit == 'true' && steps.cache.ouputs.cache-hit != 'true'}}
         false
