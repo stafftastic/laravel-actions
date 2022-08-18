@@ -1,0 +1,15 @@
+name: Check for Copy-Pasted Code
+description: Check for copy-pasted code with phpcpd
+runs:
+  using: composite
+  steps:
+    - name: Cache Dependencies
+      id: cache
+      uses: stafftastic/laravel-actions/cache@main
+      with:
+        require-hit: true
+    - name: Run Copy-Paste Check
+      shell: bash
+      run: |
+        test -f phpcpd.phar || curl -L https://phar.phpunit.de/phpcpd.phar -o phpcpd.phar
+        php phpcpd.phar src --min-lines=50
