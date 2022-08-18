@@ -1,0 +1,14 @@
+name: Analyze Code Style
+description: Perform static analysis with PHP_CodeSniffer
+runs:
+  using: composite
+  steps:
+    - name: Cache Dependencies
+      id: cache
+      uses: stafftastic/laravel-actions/cache@main
+      with:
+        require-hit: true
+    - name: Run Static Analysis
+      shell: bash
+      run: |
+        ./vendor/bin/phpcs --extensions=php --standard=PSR2 src
