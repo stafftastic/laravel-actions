@@ -25,6 +25,6 @@ runs:
       shell: bash
       run: |
         echo ${{inputs.require-hit}}
-        echo ${{inputs.require-hit && true}}
+        echo ${{inputs.require-hit == 'true'}}
         echo ${{inputs.require-hit && steps.cache.outputs.cache-hit != 'true'}}
         false
