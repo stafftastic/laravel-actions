@@ -1,5 +1,10 @@
 name: Cache Dependencies
 description: Cache dependencies and .env file
+inputs:
+  require-hit:
+    description: Fail if the cache was missed
+    required: true
+    default: false
 outputs:
   cache-hit:
     description: Whether or not the cache was hit
@@ -15,3 +20,8 @@ runs:
         path: |
           vendor
           .env
+  - name: Fail
+    if: ${{inputs.require-hit && steps.cache.ouputs.cache-hit != 'true'}}
+    shell: bash
+    run: |
+      false
