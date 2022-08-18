@@ -1,0 +1,15 @@
+name: Prepare Environment
+description: Prepare Environment for Testing and Analysis of Laravel Apps
+runs:
+  using: composite
+  steps:
+    - name: Cache Dependencies
+      id: cache
+      uses: stafftastic/laravel-actions/cache@main
+    - name: Prepare Environment
+      shell: bash
+      if: ${{steps.cache.outputs.cache-hit != 'true'}}
+      run: |
+        composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+        cp .env.example .env
+        php artisan key:generate

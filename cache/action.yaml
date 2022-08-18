@@ -1,0 +1,17 @@
+name: Cache Dependencies
+description: Cache dependencies and .env file
+outputs:
+  cache-hit:
+    description: Whether or not the cache was hit
+    value: ${{steps.cache.outputs.cache-hit}}
+runs:
+  using: composite
+  steps:
+    - name: Cache Dependencies
+      id: cache
+      uses: actions/cache@v3
+      with:
+        key: ${{hashFiles('composer.lock')}}
+        path: |
+          vendor
+          .env
