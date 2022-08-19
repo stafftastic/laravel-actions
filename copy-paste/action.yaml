@@ -1,5 +1,10 @@
 name: Check for Copy-Pasted Code
 description: Check for copy-pasted code with phpcpd
+inputs:
+  min-lines:
+    description: The minimum lines to count as repeated code
+    required: true
+    default: 50
 runs:
   using: composite
   steps:
@@ -12,4 +17,4 @@ runs:
       shell: bash
       run: |
         test -f phpcpd.phar || curl -L https://phar.phpunit.de/phpcpd.phar -o phpcpd.phar
-        php phpcpd.phar src --min-lines=50
+        php phpcpd.phar src --min-lines=${{inputs.min-lines}}
