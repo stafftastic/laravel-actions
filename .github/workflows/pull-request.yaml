@@ -1,0 +1,80 @@
+name: Run Tests and Analyses
+on:
+  workflow_call:
+    inputs:
+      image:
+        description: The container image to run all actions in
+        required: true
+        default: europe-west3-docker.pkg.dev/stafftastic/base-images/laravel-nginx:v1.1.1
+jobs:
+  prepare:
+    name: Prepare Environment
+    runs-on: ubuntu-latest
+    container:
+      image: ${{inputs.image}}
+      options: -u 0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Prepare Environment
+        uses: stafftastic/laravel-actions/prepare@main
+  code-quality:
+    name: Analyze Code Quality
+    needs: prepare
+    runs-on: ubuntu-latest
+    container:
+      image: ${{inputs.image}}
+      options: -u 0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Analyze Code Quality
+        uses: stafftastic/laravel-actions/code-quality@main
+  code-style:
+    name: Analyze Code Style
+    needs: prepare
+    runs-on: ubuntu-latest
+    container:
+      image: ${{inputs.image}}
+      options: -u 0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Analyze Code Style
+        uses: stafftastic/laravel-actions/code-style@main
+  copy-paste:
+    name: Check for Copy-Pasted Code
+    needs: prepare
+    runs-on: ubuntu-latest
+    container:
+      image: ${{inputs.image}}
+      options: -u 0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Check for Copy-Pasted Code
+        uses: stafftastic/laravel-actions/copy-paste@main
+  phpinsights:
+    name: Analyze Code with PHP Insights
+    needs: prepare
+    runs-on: ubuntu-latest
+    container:
+      image: ${{inputs.image}}
+      options: -u 0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Analyze Code with PHP Insights
+        uses: stafftastic/laravel-actions/phpinsights@main
+  security:
+    name: Analyze Dependency Security
+    needs: prepare
+    runs-on: ubuntu-latest
+    container:
+      image: ${{inputs.image}}
+      options: -u 0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Analyze Dependency Security
+        uses: stafftastic/laravel-actions/security@main
