@@ -5,7 +5,7 @@ runs:
   steps:
     - name: Cache Dependencies
       id: cache
-      uses: stafftastic/laravel-actions/cache@main
+      uses: stafftastic/laravel-actions/cache@v1.0.0
     - name: Prepare Environment
       shell: bash
       if: ${{steps.cache.outputs.cache-hit != 'true'}}

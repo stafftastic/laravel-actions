@@ -5,7 +5,7 @@ runs:
   steps:
     - name: Cache Dependencies
       id: cache
-      uses: stafftastic/laravel-actions/cache@main
+      uses: stafftastic/laravel-actions/cache@v1.0.0
       with:
         require-hit: true
     - name: Run Security Analysis
