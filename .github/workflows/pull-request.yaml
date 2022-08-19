@@ -4,7 +4,7 @@ on:
     inputs:
       image:
         description: The container image to run all actions in
-        required: true
+        required: false
         type: string
         default: europe-west3-docker.pkg.dev/stafftastic/base-images/laravel-nginx:v1.1.1
 jobs:
