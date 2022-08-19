@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Prepare Environment
-        uses: stafftastic/laravel-actions/prepare@main
+        uses: stafftastic/laravel-actions/prepare@v1.0.0
   code-quality:
     name: Analyze Code Quality
     needs: prepare
@@ -29,7 +29,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Analyze Code Quality
-        uses: stafftastic/laravel-actions/code-quality@main
+        uses: stafftastic/laravel-actions/code-quality@v1.0.0
   code-style:
     name: Analyze Code Style
     needs: prepare
@@ -41,7 +41,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Analyze Code Style
-        uses: stafftastic/laravel-actions/code-style@main
+        uses: stafftastic/laravel-actions/code-style@v1.0.0
   copy-paste:
     name: Check for Copy-Pasted Code
     needs: prepare
@@ -53,7 +53,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Check for Copy-Pasted Code
-        uses: stafftastic/laravel-actions/copy-paste@main
+        uses: stafftastic/laravel-actions/copy-paste@v1.0.0
   phpinsights:
     name: Analyze Code with PHP Insights
     needs: prepare
@@ -65,7 +65,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Analyze Code with PHP Insights
-        uses: stafftastic/laravel-actions/phpinsights@main
+        uses: stafftastic/laravel-actions/phpinsights@v1.0.0
   security:
     name: Analyze Dependency Security
     needs: prepare
@@ -77,4 +77,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Analyze Dependency Security
-        uses: stafftastic/laravel-actions/security@main
+        uses: stafftastic/laravel-actions/security@v1.0.0
